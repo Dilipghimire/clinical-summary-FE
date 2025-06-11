@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import NoDataPage from "./NoDataPage";
 import { isObjectEmpty } from "../utils/util";
+import { Download, Mail, Printer } from "lucide-react";
+import html2pdf from "html2pdf.js";
 
 const SummaryPage: React.FC = () => {
   const navigate = useNavigate();
@@ -17,17 +19,26 @@ const SummaryPage: React.FC = () => {
   const { openModal, closeModal } = useModal();
   const { patientInfo, setPatientInfo } = usePatientInfo();
   const [isReportGenerated, setReportGenerated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     data: clinicalNoteSummary,
     refetch,
-    isLoading,
+    isPending,
+    isLoading: isSummaryLoading,
   } = useGetSummary(patient_pc_namespace);
 
   const handleApply = () => {
     setReportGenerated(true);
     refetch();
     closeModal();
+  };
+
+  const handleGetSummary = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   };
 
   useEffect(() => {
@@ -57,9 +68,17 @@ const SummaryPage: React.FC = () => {
     `${patientInfo.first_name} ${patientInfo.middle_name ?? ""} ${patientInfo.last_name}`
       .replace(/\s+/g, " ")
       .trim();
+
+  const handleDownload = () => {
+    if (summaryPrintRef.current) {
+      html2pdf()
+        .from(summaryPrintRef.current)
+        .save(`${fullName}-clinical-report.pdf`);
+    }
+  };
+
   const handlePrint = () => {
     if (!summaryPrintRef.current) return;
-
     const printContent = summaryPrintRef.current.innerHTML;
     const printWindow = window.open("", "_blank", "width=800,height=600");
     if (printWindow) {
@@ -73,7 +92,7 @@ const SummaryPage: React.FC = () => {
 
   return clinicalNoteSummary != "" ? (
     <div className={styles.container}>
-      {isLoading && <Loading />}
+      {( isSummaryLoading || isLoading) && <Loading />}
       <h2>Patient Report Summary</h2>
       <div className={isReportGenerated ? styles.reportGrid : styles.grid}>
         {/* Left Side */}
@@ -84,15 +103,29 @@ const SummaryPage: React.FC = () => {
               Ready to generate a summary for <strong>{fullName}</strong> (
               {patientInfo.email})?
             </p>
-            <button onClick={() => openModal()}>Get Summary</button>
+            <button
+              onClick={() => {
+                handleGetSummary();
+                openModal();
+              }}
+            >
+              Get Summary
+            </button>
           </div>
         )}
 
         {/* Right Side */}
         <div className={styles.rightPane} ref={summaryPrintRef}>
           <div className={styles.actions}>
-            <button onClick={() => handlePrint()}>🖨</button>
-            <button>📧</button>
+            <button onClick={() => handlePrint()}>
+              <Printer width={18} height={18} />
+            </button>
+            <button>
+              <Mail width={18} height={18} />
+            </button>
+            <button onClick={() => handleDownload()}>
+              <Download width={18} height={18} />
+            </button>
           </div>
           <div className={styles.patientInfo}>
             <h3>Clinical notes summary</h3>

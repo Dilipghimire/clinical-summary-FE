@@ -9,6 +9,10 @@
   backdrop-filter: blur(4px);
 }
 
+.spinnerContainer {
+  display: flex
+}
+
 .spinner {
   width: 48px;
   height: 48px;

@@ -5,9 +5,9 @@ type DeleteNamespace = {
   patient_namespace: string;
 };
 
-export function useDelete() {
+export function useDelete(patient_namespace: DeleteNamespace) {
   return useMutation({
-    mutationFn: async ({ patient_namespace }: DeleteNamespace) => {
+    mutationFn: async () => {
       const res = await api.post(
         `/delete-pc-namespace?patient_namespace=${patient_namespace}`
       );

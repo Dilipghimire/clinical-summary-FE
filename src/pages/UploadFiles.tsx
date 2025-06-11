@@ -6,6 +6,7 @@ import { isObjectEmpty } from "../utils/util";
 import { useNavigate } from "react-router-dom";
 import { usePatientInfo } from "../context/PatientInfoContext";
 import styles from "../pages/UploadFiles.module.scss";
+import { UploadCloud } from "lucide-react";
 
 const UploadFiles = () => {
   const [files, setFiles] = useState<File[]>([]);
