@@ -1,0 +1,61 @@
+.mainSection {
+  display: flex;
+
+  .container {
+    font-family: "Segoe UI", sans-serif;
+    flex: 1;
+    padding: 3rem;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .toggleText {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: #4b5563;
+
+    span {
+      text-decoration: underline;
+      cursor: pointer;
+      color: #2563eb;
+
+      &:hover {
+        color: #1e40af;
+      }
+    }
+  }
+
+  .infoSection {
+    flex: 1;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}

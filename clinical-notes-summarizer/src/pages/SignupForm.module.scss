@@ -1,0 +1,27 @@
+.container {
+  font-family: "Segoe UI", sans-serif;
+  background: #f9fafb;
+  flex: 1;
+  padding: 3rem;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+
+  .toggleText {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: #4b5563;
+
+    span {
+      text-decoration: underline;
+      cursor: pointer;
+      color: #2563eb;
+
+      &:hover {
+        color: #1e40af;
+      }
+    }
+  }
+}

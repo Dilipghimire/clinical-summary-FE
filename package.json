@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "formik": "^2.4.6",
+    "lucide-react": "^0.513.0",
+    "yup": "^1.6.1"
+  }
+}
