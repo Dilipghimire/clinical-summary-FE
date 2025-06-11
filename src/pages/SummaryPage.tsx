@@ -4,7 +4,7 @@ import { useModal } from "../context/ModelContext";
 import GetSummaryModal from "./SummaryModal/GetSummaryModal";
 import { usePatientInfo } from "../context/PatientInfoContext";
 import { useGetSummary } from "../hooks/useGetSummary";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import NoDataPage from "./NoDataPage";
 import { isObjectEmpty } from "../utils/util";
@@ -20,11 +20,11 @@ const SummaryPage: React.FC = () => {
   const { patientInfo, setPatientInfo } = usePatientInfo();
   const [isReportGenerated, setReportGenerated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const previousPath = useRef(location.pathname);
 
   const {
     data: clinicalNoteSummary,
     refetch,
-    isPending,
     isLoading: isSummaryLoading,
   } = useGetSummary(patient_pc_namespace);
 
@@ -41,22 +41,16 @@ const SummaryPage: React.FC = () => {
     }, 5000);
   };
 
-  useEffect(() => {
-    const handleBackButton = () => {
-      setPatientInfo({
-        first_name: "",
-        last_name: "",
-        middle_name: "",
-        email: "",
-        date_of_birth: "",
-      });
-    };
 
-    window.addEventListener("popstate", handleBackButton);
-    return () => {
-      window.removeEventListener("popstate", handleBackButton);
-    };
-  }, []);
+  useEffect(() => {
+    if (isReportGenerated) {
+      // Replace history entry with /summarize-report
+      // after pushing /patient-info manually to create new first step
+      navigate("/patient-info");
+      navigate("/summarize-report", { replace: true });
+    }
+  }, [isReportGenerated]);
+ 
 
   useEffect(() => {
     if (isObjectEmpty(patientInfo)) {
@@ -92,7 +86,7 @@ const SummaryPage: React.FC = () => {
 
   return clinicalNoteSummary != "" ? (
     <div className={styles.container}>
-      {( isSummaryLoading || isLoading) && <Loading />}
+      {(isSummaryLoading || isLoading) && <Loading />}
       <h2>Patient Report Summary</h2>
       <div className={isReportGenerated ? styles.reportGrid : styles.grid}>
         {/* Left Side */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./PatientInfo.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -61,11 +61,11 @@ export const PatientInfoForm: React.FC = () => {
 
         <Formik<PatientFormType>
           initialValues={{
-            first_name: "",
-            middle_name: "",
-            last_name: "",
-            date_of_birth: "",
-            email: "",
+            first_name: patientInfo.first_name,
+            middle_name: patientInfo.middle_name,
+            last_name: patientInfo.last_name,
+            date_of_birth: patientInfo.date_of_birth,
+            email: patientInfo.email,
           }}
           validationSchema={validationSchema}
           onSubmit={async (values) => {

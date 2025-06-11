@@ -9,23 +9,14 @@ const Header: React.FC = () => {
   const isLoggedIn = !!localStorage.getItem("access_token");
   const { data } = useProfile();
   const profileName = data?.email?.sub;
-  const location = useLocation();
-  const patient_pc_namespace = location.state?.responseData;
-  const { mutateAsync } = useDelete();
 
-  const deleteNamespace = async () => {
-    await mutateAsync(patient_pc_namespace);
-  };
-
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("access_token");
     navigate("/login");
-    patient_pc_namespace ? deleteNamespace() : null;
   };
 
-  const handleNewReport = () => {
+  const handleNewReport = async () => {
     navigate("/patient-info");
-    patient_pc_namespace ? deleteNamespace() : null;
   };
 
   if (!isLoggedIn) return null;
