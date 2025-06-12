@@ -41,17 +41,6 @@ const SummaryPage: React.FC = () => {
     }, 5000);
   };
 
-
-  useEffect(() => {
-    if (isReportGenerated) {
-      // Replace history entry with /summarize-report
-      // after pushing /patient-info manually to create new first step
-      navigate("/patient-info");
-      navigate("/summarize-report", { replace: true });
-    }
-  }, [isReportGenerated]);
- 
-
   useEffect(() => {
     if (isObjectEmpty(patientInfo)) {
       navigate("/patient-info");
