@@ -41,11 +41,11 @@ const SummaryPage: React.FC = () => {
     }, 5000);
   };
 
-  useEffect(() => {
-    if (isObjectEmpty(patientInfo)) {
-      navigate("/patient-info");
-    }
-  });
+  // useEffect(() => {
+  //   if (isObjectEmpty(patientInfo)) {
+  //     navigate("/patient-info");
+  //   }
+  // });
 
   const fullName =
     `${patientInfo.first_name} ${patientInfo.middle_name ?? ""} ${patientInfo.last_name}`

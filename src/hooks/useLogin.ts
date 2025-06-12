@@ -20,7 +20,7 @@ export function useLogin() {
     },
     onSuccess: (data) => {
       localStorage.setItem("access_token", data.access_token);
-      navigate("/summarize-report"); //only for now, change later
+      navigate("/patient-info"); 
     },
   });
 }
