@@ -5,7 +5,10 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "./src"]
+    "typeRoots": ["./node_modules/@types", "./src"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   }
 }
 
