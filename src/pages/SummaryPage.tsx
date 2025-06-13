@@ -6,8 +6,10 @@ import { useGetSummary } from "../hooks/useGetSummary";
 import { useLocation } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import NoDataPage from "./NoDataPage";
-import html2pdf from "html2pdf.js";
 import { usePatientInfo } from "../context/PatientInfoContext";
+
+declare const html2pdf: any;
+
 
 const SummaryPage: React.FC = () => {
   const summaryPrintRef = useRef<HTMLDivElement>(null);
