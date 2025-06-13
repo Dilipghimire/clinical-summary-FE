@@ -6,7 +6,6 @@ import { useGetSummary } from "../hooks/useGetSummary";
 import { useLocation } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import NoDataPage from "./NoDataPage";
-import { Download, Mail, Printer } from "lucide-react";
 import html2pdf from "html2pdf.js";
 import { usePatientInfo } from "../context/PatientInfoContext";
 
@@ -17,7 +16,7 @@ const SummaryPage: React.FC = () => {
   const { openModal, closeModal } = useModal();
   const [isReportGenerated, setReportGenerated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const {patientInfo} = usePatientInfo();
+  const { patientInfo } = usePatientInfo();
 
   const {
     data: clinicalNoteSummary,
@@ -97,15 +96,9 @@ const SummaryPage: React.FC = () => {
         {/* Right Side */}
         <div className={styles.rightPane} ref={summaryPrintRef}>
           <div className={styles.actions}>
-            <button onClick={() => handlePrint()}>
-              <Printer width={18} height={18} />
-            </button>
-            <button>
-              <Mail width={18} height={18} />
-            </button>
-            <button onClick={() => handleDownload()}>
-              <Download width={18} height={18} />
-            </button>
+            <button onClick={() => handlePrint()}>🖨️</button>
+            <button>✉️</button>
+            <button onClick={() => handleDownload()}>📥</button>
           </div>
           <div className={styles.patientInfo}>
             <h3>Clinical notes summary</h3>

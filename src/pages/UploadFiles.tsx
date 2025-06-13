@@ -6,7 +6,6 @@ import { isObjectEmpty } from "../utils/util";
 import { useNavigate } from "react-router-dom";
 import { usePatientInfo } from "../context/PatientInfoContext";
 import styles from "../pages/UploadFiles.module.scss";
-import { UploadCloud } from "lucide-react";
 
 const UploadFiles = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -61,7 +60,6 @@ const UploadFiles = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.uploadContainer}>
           <div className={styles.uploadBox} onClick={openFileDialog}>
-            <UploadCloud size={40} className={styles.uploadIcon} />
             <p className={styles.uploadText}>Click to upload or drag & drop</p>
             <p className={styles.uploadSubtext}>
               Accepted formats: PDF, TXT, HTML, JSON
