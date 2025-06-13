@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./PatientInfo.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -6,7 +6,7 @@ import FormikInput from "../components/input/FormikInput";
 import { Button } from "../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { usePatientInfo } from "../context/PatientInfoContext";
-import { isValid, parseISO, isAfter, isBefore, subYears } from "date-fns";
+import { isValid, parseISO, isAfter, isBefore } from "date-fns";
 
 type PatientFormType = {
   first_name: string;

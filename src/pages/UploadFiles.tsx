@@ -52,7 +52,7 @@ const UploadFiles = () => {
 
   return (
     <div>
-      {isPending && <Loading />}
+      {(isPending || isLoading) && <Loading />}
       <p className={styles.privacyText}>
         🔒 <strong>Privacy Policy:</strong> Your uploaded documents are used
         only to generate a summary and are permanently deleted immediately after

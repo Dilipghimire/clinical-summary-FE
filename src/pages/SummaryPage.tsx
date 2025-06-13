@@ -1,26 +1,21 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./SummaryPage.module.scss";
 import { useModal } from "../context/ModelContext";
 import GetSummaryModal from "./SummaryModal/GetSummaryModal";
-import { usePatientInfo } from "../context/PatientInfoContext";
 import { useGetSummary } from "../hooks/useGetSummary";
-import { useLocation, useNavigate, useNavigationType } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Loading from "../components/loading/Loading";
 import NoDataPage from "./NoDataPage";
-import { isObjectEmpty } from "../utils/util";
 import { Download, Mail, Printer } from "lucide-react";
 import html2pdf from "html2pdf.js";
 
 const SummaryPage: React.FC = () => {
-  const navigate = useNavigate();
   const summaryPrintRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const patient_pc_namespace = location.state?.responseData;
   const { openModal, closeModal } = useModal();
-  const { patientInfo, setPatientInfo } = usePatientInfo();
   const [isReportGenerated, setReportGenerated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const previousPath = useRef(location.pathname);
 
   const {
     data: clinicalNoteSummary,

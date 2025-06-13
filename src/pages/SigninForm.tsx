@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import { Button } from "../components/button/Button";
 import { useLogin } from "../hooks/useLogin";
 import Loading from "../components/loading/Loading";
-import Header from "./Header";
 
 type SigninType = {
   email: string;
