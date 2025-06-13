@@ -8,6 +8,7 @@ import Loading from "../components/loading/Loading";
 import NoDataPage from "./NoDataPage";
 import { Download, Mail, Printer } from "lucide-react";
 import html2pdf from "html2pdf.js";
+import { usePatientInfo } from "../context/PatientInfoContext";
 
 const SummaryPage: React.FC = () => {
   const summaryPrintRef = useRef<HTMLDivElement>(null);
@@ -16,6 +17,7 @@ const SummaryPage: React.FC = () => {
   const { openModal, closeModal } = useModal();
   const [isReportGenerated, setReportGenerated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const {patientInfo} = usePatientInfo();
 
   const {
     data: clinicalNoteSummary,
