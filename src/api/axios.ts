@@ -2,7 +2,7 @@ import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 
 // Create an Axios instance
 const api = axios.create({
-  baseURL: "http://localhost:8000", // Replace with your actual backend URL
+  baseURL: "https://clinical-summary-be.onrender.com",
 });
 
 // Request interceptor
